@@ -81,22 +81,30 @@ Node* insert(Node *root, int key) {
     return leftRotation(root);
 
     // Left Right case
-    else if (balance > 1 && key>root->left->data)
+    else if (balance > 1 && key>root->left->data){
     root->left =  leftRotation(root->left);
     return  rightRotation(root);
+    }
 
 
     //Right Left case 
-    else if (balance < -1 && root->right->data>key)
+    else if (balance < -1 && root->right->data>key){
     root->left =  rightRotation(root->right);
      return leftRotation(root);
+    }
 
     // No Unbalancing case
     else
     return root;
+}
 
-    
+void preorder(Node *root){
+    if(!root)
+    return;
 
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
 }
 
 
@@ -112,4 +120,7 @@ int main() {
     root = insert(root,5);
     root = insert(root,100);
     root = insert(root,95);
+
+    cout<<"preorder: "<<endl;
+
 }
